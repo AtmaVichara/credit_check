@@ -80,10 +80,15 @@ class CardValidator
       end
     end
 
-    summed_digits += sum.reduce(:+)
+    summed_digits = double_digits.map do |double_digit|
+      if double_digit > 9
+        double_digit - 9
+      else
+        double_digit
+      end
+    end
 
-    result = 0
-    summed_digits.each { |summed_digit| result += summed_digit }
+    result = summed_digits.replace(:+)
 
     if result % 10 == 0
       ## If it is valid, print "The number is valid!"
