@@ -80,13 +80,7 @@ class CardValidator
       end
     end
 
-    summed_digits = double_digits.map do |double_digit|
-      if double_digit > 9
-        double_digit - 9
-      else
-        double_digit
-      end
-    end
+    summed_digits += double_digits.reduce(:+)
 
     result = 0
     summed_digits.each { |summed_digit| result += summed_digit }
@@ -105,6 +99,6 @@ puts "What card issuer are you wanting to validate?"
 puts "We except Visa, Mastercard, American Express, and Discover"
 print "> "
 card_issuers = gets.chomp
-
+ binding.pry
 card_issuer_check = GatherUserCardInformation.new(card_issuers)
 card_issuer_check.prompt_user_for_card_issuer
